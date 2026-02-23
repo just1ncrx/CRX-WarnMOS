@@ -197,7 +197,7 @@ for filename in files:
         # --------------------------
         # Speichern
         # --------------------------
-        outname = f"gewitterprob_{valid_time_local:%Y%m%d_%H%M}.png"
+        outname = f"gewitter_{valid_time_local:%Y%m%d_%H%M}.png"
         plt.savefig(os.path.join(OUTPUT_DIR, outname), dpi=100, bbox_inches=None, pad_inches=0)
         plt.close()
         print("PNG erzeugt:", outname)
