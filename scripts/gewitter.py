@@ -130,7 +130,7 @@ for filename in files:
 
         else:
             data_plot = data.values
-            valid_time_local = run_time_utc
+            valid_time_utc = run_time_utc
             
             
         valid_time_display = valid_time_utc
