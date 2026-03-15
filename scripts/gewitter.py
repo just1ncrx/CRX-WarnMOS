@@ -128,12 +128,10 @@ for filename in files:
             else:
                 valid_time_utc = run_time_utc + pd.to_timedelta(step, unit='h')
 
+            valid_time_local = valid_time_utc.tz_localize("UTC").astimezone(ZoneInfo("Europe/Berlin"))
         else:
             data_plot = data.values
-            valid_time_utc = run_time_utc
-            
-            
-        valid_time_display = valid_time_utc
+            valid_time_local = run_time_utc.tz_localize("UTC").astimezone(ZoneInfo("Europe/Berlin"))
 
 
 
@@ -193,13 +191,13 @@ for filename in files:
         left_text = f"Gewitter Wahrscheinlichkeit (%)\nWarnMOS ({run_time_utc.strftime('%Hz') if run_time_utc else 'run'}), Deutscher Wetterdienst"
         footer_ax.text(0.01, 0.85, left_text, fontsize=12, fontweight="bold", va="top", ha="left")
         footer_ax.text(0.734, 0.92, "Prognose für:", fontsize=12, va="top", ha="left", fontweight="bold")
-        footer_ax.text(0.99, 0.68, f"{valid_time_display:%d.%m.%Y %H:%M} Uhr",
+        footer_ax.text(0.99, 0.68, f"{valid_time_local:%d.%m.%Y %H:%M} Uhr",
                    fontsize=12, va="top", ha="right", fontweight="bold")
 
         # --------------------------
         # Speichern
         # --------------------------
-        outname = f"gewitter_{valid_time_display:%Y%m%d_%H%M}.png"
+        outname = f"gewitter_{valid_time_local:%Y%m%d_%H%M}.png"
         plt.savefig(os.path.join(OUTPUT_DIR, outname), dpi=100, bbox_inches=None, pad_inches=0)
         plt.close()
         print("PNG erzeugt:", outname)
