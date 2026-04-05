@@ -94,7 +94,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Download GRIB2 artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: grib2
           path: data/
@@ -106,7 +106,7 @@ jobs:
           python scripts/${{ matrix.variable }}.py 
 
       - name: Upload PNGs artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: warnmos-${{ matrix.variable }}
           path: warnmos/${{ matrix.variable }}
