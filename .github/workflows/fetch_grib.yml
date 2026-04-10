@@ -32,7 +32,7 @@ jobs:
       - name: Set RUN and DATE (hourly)
         id: set_run_date
         run: |
-          HOUR=0
+          HOUR=00
           DATE=20260410
           RUN=$HOUR
 
